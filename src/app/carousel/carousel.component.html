@@ -1,0 +1,44 @@
+
+<div style="background-color: #153E3E; color: #ffffff;"><h1 style="text-align: center"> LOGISTICAS PROGRAMADAS</h1><BR></div>
+
+<p-table [tableStyle]="{ 'min-width': '80rem; ' }">
+  <ng-template pTemplate="header">
+    <tr>
+      <th class="encabezado" style="width: 5%;">#</th>
+      <th class="encabezado" style="width: 30%;">CLIENTE <br> SOLICITANTE</th>
+      <th class="encabezado" style="width: 5%;">PEDIDO</th>
+      <th class="encabezado" style="width: 35%;">PRODUCTO</th>
+      <th class="encabezado" style="width: 5%;">FECHA <br> ENTREGA</th>
+      <th class="encabezado" style="width: 10%;">CANTIDAD <BR> SOLICITADA</th>
+      <th class="encabezado" style="width: 10%;"> &nbsp; </th>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-carousel [value]="products" [numVisible]="2" [style]="{'height':'100vh'}"  
+[circular]="false" orientation="vertical" autoplayInterval="4000">
+  <ng-template let-products pTemplate="item">
+
+   
+
+    <div  class="tabletr">
+      <tbody>
+        <tr>
+          <td style="text-align: center; width: 5%;">{{products.nO_LOGISTICA}}</td>
+          <td style="text-align: center; width: 30%; background-color: #F2FAF9 !important;">{{products.cardcode}} / {{products.cliente}} <br><br> {{products.auxventas}}</td>
+          <td style="text-align: center; width: 5%;">{{products.pedido}}</td>
+          <td style="text-align: center; width: 35%; background-color: #F2FAF9 !important;">{{products.itemcode}} / {{products.producto}}</td>
+          <td style="text-align: center; width: 5%;">{{products.dia}}<br>{{products.fechaprog| date:'dd-MM-yy'}}</td>
+          <td style="text-align: center; width: 10%; background-color: #F2FAF9 !important;">{{products.programado|number}}<br>{{products.unidad}}</td>
+          <td *ngIf="products.semaforo=='AMARILLO'"style="text-align: center; width: 10%;background-color:#FDE366; color:#FFFFFF;" width="40"><B>{{products.estatuS2}}</B> / {{products.dias}}<br>{{products.stockvssolicitado|number}}<br></td>
+          <td *ngIf="products.semaforo=='AZUL'"style="text-align: center; width: 10%;background-color:#229FDD;color:#FFFFFF;" width="40">    <B>{{products.estatuS2}}</B> / {{products.dias}}<br>{{products.stockvssolicitado|number}}<br></td>
+          <td *ngIf="products.semaforo=='VERDE'"style="text-align: center; width: 10%;background-color:#1BC458;color:#FFFFFF;" width="40">   <B>{{products.estatuS2}}</B> / {{products.dias}}<br>{{products.stockvssolicitado|number}}<br></td>
+          <td *ngIf="products.semaforo=='ROJO'"style="text-align: center; width: 10%;background-color:#B01A30;color:#FFFFFF;" width="40">    <B>{{products.estatuS2}}</B> / {{products.dias}}<br>{{products.stockvssolicitado|number}}<br></td>
+          <td *ngIf="products.semaforo=='NARANJA'"style="text-align: center; width: 10%;background-color:#EE873B;color:#FFFFFF;" width="40"> <B>{{products.estatuS2}}</B> / {{products.dias}}<br>{{products.stockvssolicitado|number}}<br></td>
+        </tr>
+
+
+      </tbody>
+    </div>  
+  </ng-template>
+</p-carousel>
